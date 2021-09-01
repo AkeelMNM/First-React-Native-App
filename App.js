@@ -25,7 +25,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import HelloWorld from './src/components/HelloWorld';
+import MainListView from './src/components/MainListView';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -61,7 +61,9 @@ const App: () => Node = () => {
   };
 
   return (
-        <HelloWorld />
+      <View style={styles.sectionContainer}>
+        <MainListView />
+      </View>
   );
 };
 
