@@ -36,7 +36,7 @@ const mainListData = [
 ]
 
 const MainListView = ({navigation}) => {
-   const clickNext = (id) => {
+   const clickResources = (id) => {
         id === 'civilizations'?(
             navigation.navigate('Civilizations List', { id: id })
         ):id === 'units'?(
@@ -53,7 +53,7 @@ const MainListView = ({navigation}) => {
         style={styles.list}
         data ={mainListData}
         renderItem={({item, index}) =>
-            <TouchableOpacity onPress={() => clickNext(item.id)} key={index.toString()} >
+            <TouchableOpacity onPress={() => clickResources(item.id)} key={index.toString()} >
                 <ListItem key={index.toString()} id={item.id} name={item.name} description={item.description} />
             </TouchableOpacity>
         }

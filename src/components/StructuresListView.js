@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, StyleSheet, FlatList} from 'react-native';
+import {Text, View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import ApiService from '../service/ApiService';
 import ListItem from './ListItem';
 
@@ -33,13 +33,21 @@ const StructuresListView = ({ route, navigation }) =>{
          getResources();
     },[])
 
+    const clickResource = (id) => {
+            navigation.navigate('Structure', { id: id, resource:'structure' })
+    }
+
     return(
         <View>
             <Text style={styles.heading}>Structures</Text>
             <FlatList
                 style={styles.list}
                 data ={resource}
-                renderItem={({item}) => <ListItem name={item.name} description={item.expansion} />}
+                renderItem={({item,index}) =>
+                    <TouchableOpacity onPress={() => clickResource(item.id)} key={index.toString()} >
+                        <ListItem name={item.name} description={item.expansion} />
+                    </TouchableOpacity>
+                }
             />
         </View>
     )
