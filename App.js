@@ -25,7 +25,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainListView from './src/components/MainListView';
+import ListView from './src/components/ListView';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -53,6 +56,8 @@ const Section = ({children, title}): Node => {
   );
 };
 
+const Stack = createNativeStackNavigator();
+
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -61,29 +66,13 @@ const App: () => Node = () => {
   };
 
   return (
-      <View style={styles.sectionContainer}>
-        <MainListView />
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="MainList" component={MainListView}/>
+          <Stack.Screen name="ListView" component={ListView}/>
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
