@@ -79,7 +79,7 @@ const App: () => Node = () => {
           <Stack.Screen name="Structures List" component={StructuresListView}/>
           <Stack.Screen name="Civilization" component={CivilizationView}/>
           <Stack.Screen name="Unit" component={UnitView}/>
-          <Stack.Screen name="Structures" component={StructureView}/>
+          <Stack.Screen name="Structure" component={StructureView}/>
         </Stack.Navigator>
       </NavigationContainer>
   );
