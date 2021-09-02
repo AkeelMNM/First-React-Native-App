@@ -1,25 +1,28 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, StyleSheet, FlatList} from 'react-native';
 import ApiService from '../service/ApiService';
+import ListItem from './ListItem';
 
 const styles = StyleSheet.create({
     heading:{
         alignItems:'center',
-        fontSize:24
+        fontSize:24,
+        paddingTop:20,
+        paddingLeft:20
     },
     list:{
-        paddingTop:20
+        padding:20
     }
 });
 
 
-const ListView = ({ route, navigation }) =>{
+const UnitsListView = ({ route, navigation }) =>{
     const [resource, setResource] = useState([]);
 
     const getResources = () =>{
         ApiService.getResourcesFromApi(route.params.id)
             .then(response =>{
-                setResource(response);
+                 setResource(response.units)
             })
             .catch((error) =>{
                 console.log(error);
@@ -27,11 +30,12 @@ const ListView = ({ route, navigation }) =>{
     }
 
     useEffect(() =>{
-         getResources;
+         getResources();
     },[])
 
     return(
         <View>
+            <Text style={styles.heading}>Units</Text>
             <FlatList
                 style={styles.list}
                 data ={resource}
@@ -41,4 +45,4 @@ const ListView = ({ route, navigation }) =>{
     )
 }
 
-export default ListView;
+export default UnitsListView;

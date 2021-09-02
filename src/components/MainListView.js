@@ -30,15 +30,20 @@ const styles = StyleSheet.create({
 });
 
 const mainListData = [
-    {id:'civilization',name:'Civilization', description:'List of civilizations in the game'},
+    {id:'civilizations',name:'Civilization', description:'List of civilizations in the game'},
     {id:'units', name:'Units', description:'List of soldier units in the game'},
     {id:'structures', name:'Structures', description:'List of building structures in the game'},
-    {id:'technologies', name:'Technologies', description:'List of technologies in the game'},
 ]
 
 const MainListView = ({navigation}) => {
    const clickNext = (id) => {
-        navigation.navigate('ListView', { id: id })
+        id === 'civilizations'?(
+            navigation.navigate('Civilizations List', { id: id })
+        ):id === 'units'?(
+            navigation.navigate('Units List', { id: id })
+        ):id === 'structures'?(
+            navigation.navigate('Structures List', { id: id })
+        ):null
    }
 
   return (
