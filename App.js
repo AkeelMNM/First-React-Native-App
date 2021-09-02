@@ -31,6 +31,9 @@ import MainListView from './src/components/MainListView';
 import CivilizationsListView from './src/components/CivilizationsListView';
 import UnitsListView from './src/components/UnitsListView';
 import StructuresListView from './src/components/StructuresListView';
+import CivilizationView from './src/components/CivilizationView';
+import UnitView from './src/components/UnitView';
+import StructureView from './src/components/StructureView';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -74,6 +77,9 @@ const App: () => Node = () => {
           <Stack.Screen name="Civilizations List" component={CivilizationsListView}/>
           <Stack.Screen name="Units List" component={UnitsListView}/>
           <Stack.Screen name="Structures List" component={StructuresListView}/>
+          <Stack.Screen name="Civilization" component={CivilizationView}/>
+          <Stack.Screen name="Unit" component={UnitView}/>
+          <Stack.Screen name="Structures" component={StructureView}/>
         </Stack.Navigator>
       </NavigationContainer>
   );
