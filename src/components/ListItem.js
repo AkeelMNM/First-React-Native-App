@@ -7,10 +7,11 @@ const styles = StyleSheet.create({
         borderRadius:5,
         elevation:2,
         marginTop:5,
-        marginBottom:5
+        marginBottom:5,
+        backgroundColor:'white'
     },
     title:{
-        fontSize:20
+        fontSize:20,
     },
     description:{
         fontSize:14,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View , StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import { Text, View , StyleSheet, FlatList, TouchableHighlight, ImageBackground} from 'react-native';
 import ListItem from './ListItem';
 
 
@@ -10,7 +10,9 @@ const styles = StyleSheet.create({
     },
     heading:{
         alignItems:'center',
-        fontSize:24
+        fontSize:28,
+        color:'white',
+        fontWeight:'800',
     },
     list:{
         paddingTop:20
@@ -47,18 +49,20 @@ const MainListView = ({navigation}) => {
    }
 
   return (
-    <View style={styles.sectionContainer}>
-      <Text style={styles.heading}>Age Of Empires II</Text>
-      <FlatList
-        style={styles.list}
-        data ={mainListData}
-        renderItem={({item, index}) =>
-            <TouchableOpacity onPress={() => clickResources(item.id)} key={index.toString()} >
-                <ListItem key={index.toString()} id={item.id} name={item.name} description={item.description} />
-            </TouchableOpacity>
-        }
-      />
-    </View>
+      <ImageBackground source={require('../image/BgImage.jpg')} style={{width: '100%', height: '100%'}}>
+          <View style={styles.sectionContainer}>
+                <Text style={styles.heading}>Age Of Empires II</Text>
+                <FlatList
+                  style={styles.list}
+                  data ={mainListData}
+                  renderItem={({item, index}) =>
+                      <TouchableHighlight onPress={() => clickResources(item.id)} key={index.toString()} underlayColor="none">
+                          <ListItem key={index.toString()} id={item.id} name={item.name} description={item.description} />
+                      </TouchableHighlight>
+                  }
+                />
+          </View>
+      </ImageBackground>
   )
 }
 
