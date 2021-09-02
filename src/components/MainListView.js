@@ -1,32 +1,60 @@
 import React from 'react';
-import { Text, View , StyleSheet, FlatList} from 'react-native';
+import { Text, View , StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import ListItem from './ListItem';
 
+
 const styles = StyleSheet.create({
+    sectionContainer: {
+        marginTop: 32,
+        paddingHorizontal: 24,
+    },
     heading:{
         alignItems:'center',
         fontSize:24
     },
     list:{
         paddingTop:20
+    },
+    sectionTitle: {
+      fontSize: 24,
+      fontWeight: '600',
+    },
+    sectionDescription: {
+      marginTop: 8,
+      fontSize: 18,
+      fontWeight: '400',
+    },
+    highlight: {
+      fontWeight: '700',
     }
 });
 
-const MainListView = () => {
+const mainListData = [
+    {id:'civilization',name:'Civilization', description:'List of civilizations in the game'},
+    {id:'units', name:'Units', description:'List of soldier units in the game'},
+    {id:'structures', name:'Structures', description:'List of building structures in the game'},
+    {id:'technologies', name:'Technologies', description:'List of technologies in the game'},
+]
+
+const MainListView = ({navigation}) => {
+   const clickNext = (id) => {
+        navigation.navigate('ListView', { id: id })
+   }
+
   return (
-    <View>
+    <View style={styles.sectionContainer}>
       <Text style={styles.heading}>Age Of Empires II</Text>
       <FlatList
         style={styles.list}
-        data ={[
-            {name:'Civilization', description:'List of civilizations in the game'},
-            {name:'Units', description:'List of soldier units in the game'},
-            {name:'Structures', description:'List of building structures in the game'},
-            {name:'Technologies', description:'List of technologies in the game'},
-        ]}
-        renderItem={({item}) => <ListItem name={item.name} description={item.description} />}
+        data ={mainListData}
+        renderItem={({item, index}) =>
+            <TouchableOpacity onPress={() => clickNext(item.id)} key={index.toString()} >
+                <ListItem key={index.toString()} id={item.id} name={item.name} description={item.description} />
+            </TouchableOpacity>
+        }
       />
     </View>
   )
 }
+
 export default MainListView;
