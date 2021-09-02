@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, StyleSheet, FlatList} from 'react-native';
+import {Text, View, StyleSheet, FlatList,TouchableOpacity} from 'react-native';
 import ApiService from '../service/ApiService';
 import ListItem from './ListItem';
 
@@ -23,7 +23,6 @@ const CivilizationsListView = ({ route, navigation }) =>{
         ApiService.getResourcesFromApi(route.params.id)
             .then(response =>{
                  setResource(response.civilizations)
-                /*setResource(response.)*/
             })
             .catch((error) =>{
                 console.log(error);
@@ -34,13 +33,21 @@ const CivilizationsListView = ({ route, navigation }) =>{
          getResources();
     },[])
 
+    const clickResource = (id) => {
+        navigation.navigate('Civilization', { id: id , resource:'civilization'})
+    }
+
     return(
         <View>
             <Text style={styles.heading}>Civilizations</Text>
             <FlatList
                 style={styles.list}
                 data ={resource}
-                renderItem={({item}) => <ListItem name={item.name} description={item.expansion} />}
+                renderItem={({item,index}) =>
+                    <TouchableOpacity onPress={() => clickResource(item.id)} key={index.toString()} >
+                        <ListItem name={item.name} description={item.expansion} />
+                    </TouchableOpacity>
+                }
             />
         </View>
     )
