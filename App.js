@@ -28,7 +28,9 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainListView from './src/components/MainListView';
-import ListView from './src/components/ListView';
+import CivilizationsListView from './src/components/CivilizationsListView';
+import UnitsListView from './src/components/UnitsListView';
+import StructuresListView from './src/components/StructuresListView';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -69,7 +71,9 @@ const App: () => Node = () => {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="MainList" component={MainListView}/>
-          <Stack.Screen name="ListView" component={ListView}/>
+          <Stack.Screen name="Civilizations List" component={CivilizationsListView}/>
+          <Stack.Screen name="Units List" component={UnitsListView}/>
+          <Stack.Screen name="Structures List" component={StructuresListView}/>
         </Stack.Navigator>
       </NavigationContainer>
   );
