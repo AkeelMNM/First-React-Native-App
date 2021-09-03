@@ -39,17 +39,10 @@ const mainListData = [
 
 const MainListView = ({navigation}) => {
    const clickResources = (id) => {
-        id === 'civilizations'?(
-            navigation.navigate('Civilizations List', { id: id })
-        ):id === 'units'?(
-            navigation.navigate('Units List', { id: id })
-        ):id === 'structures'?(
-            navigation.navigate('Structures List', { id: id })
-        ):null
+        navigation.navigate('List', { resourceName: id })
    }
 
   return (
-      <ImageBackground source={require('../image/BgImage.jpg')} style={{width: '100%', height: '100%'}}>
           <View style={styles.sectionContainer}>
                 <Text style={styles.heading}>Age Of Empires II</Text>
                 <FlatList
@@ -62,7 +55,6 @@ const MainListView = ({navigation}) => {
                   }
                 />
           </View>
-      </ImageBackground>
   )
 }
 

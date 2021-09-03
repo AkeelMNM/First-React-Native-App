@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const CivilizationView = ({route, navigation}) => {
+const DetailView = ({route, navigation}) => {
     const [resource, setResource] = useState([]);
 
     const getResource = async () =>{
@@ -62,4 +62,4 @@ const CivilizationView = ({route, navigation}) => {
     </ImageBackground>
   )
 }
-export default CivilizationView;
+export default DetailView;

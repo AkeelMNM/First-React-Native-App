@@ -16,6 +16,7 @@ import {
   Text,
   useColorScheme,
   View,
+  ImageBackground
 } from 'react-native';
 
 import {
@@ -25,15 +26,15 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainListView from './src/components/MainListView';
-import CivilizationsListView from './src/components/CivilizationsListView';
-import UnitsListView from './src/components/UnitsListView';
-import StructuresListView from './src/components/StructuresListView';
+import ListView from './src/components/ListView';
 import CivilizationView from './src/components/CivilizationView';
 import UnitView from './src/components/UnitView';
 import StructureView from './src/components/StructureView';
+
+
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -61,6 +62,7 @@ const Section = ({children, title}): Node => {
   );
 };
 
+
 const Stack = createNativeStackNavigator();
 
 const App: () => Node = () => {
@@ -70,18 +72,26 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const MyTheme = {
+          ...DefaultTheme,
+          colors: {
+              ...DefaultTheme.colors,
+              background: 'transparent',
+          },
+  };
+
   return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="MainList" component={MainListView}/>
-          <Stack.Screen name="Civilizations List" component={CivilizationsListView}/>
-          <Stack.Screen name="Units List" component={UnitsListView}/>
-          <Stack.Screen name="Structures List" component={StructuresListView}/>
-          <Stack.Screen name="Civilization" component={CivilizationView}/>
-          <Stack.Screen name="Unit" component={UnitView}/>
-          <Stack.Screen name="Structure" component={StructureView}/>
-        </Stack.Navigator>
-      </NavigationContainer>
+      <ImageBackground source={require('./src/image/BgImage.jpg')} style={{width: '100%', height: '100%'}}>
+          <NavigationContainer theme={MyTheme}>
+            <Stack.Navigator>
+              <Stack.Screen name="MainList" component={MainListView}/>
+              <Stack.Screen name="List" component={ListView}/>
+              <Stack.Screen name="Civilization" component={CivilizationView}/>
+              <Stack.Screen name="Unit" component={UnitView}/>
+              <Stack.Screen name="Structure" component={StructureView}/>
+            </Stack.Navigator>
+          </NavigationContainer>
+      </ImageBackground>
   );
 };
 
