@@ -30,9 +30,7 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainListView from './src/components/MainListView';
 import ListView from './src/components/ListView';
-import CivilizationView from './src/components/CivilizationView';
-import UnitView from './src/components/UnitView';
-import StructureView from './src/components/StructureView';
+import DetailView from './src/components/DetailView';
 
 
 
@@ -86,9 +84,7 @@ const App: () => Node = () => {
             <Stack.Navigator>
               <Stack.Screen name="MainList" component={MainListView}/>
               <Stack.Screen name="List" component={ListView}/>
-              <Stack.Screen name="Civilization" component={CivilizationView}/>
-              <Stack.Screen name="Unit" component={UnitView}/>
-              <Stack.Screen name="Structure" component={StructureView}/>
+              <Stack.Screen name="DetailView" component={DetailView}/>
             </Stack.Navigator>
           </NavigationContainer>
       </ImageBackground>

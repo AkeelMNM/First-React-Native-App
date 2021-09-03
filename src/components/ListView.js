@@ -55,7 +55,17 @@ const ListView = ({ route, navigation }) =>{
     },[])
 
     const clickResource = (id) => {
-        navigation.navigate('Civilization', { id: id , resource:'civilization'})
+        let changedResourceName = '';
+
+        resourceName === 'civilizations'?(
+             changedResourceName ='civilization'
+        ):resourceName === 'units'?(
+             changedResourceName = 'unit'
+        ):resourceName === 'structures'?(
+             changedResourceName = 'structure'
+        ):null
+
+        navigation.navigate('DetailView', { id: id , resource: changedResourceName})
     }
 
     return(
