@@ -66,11 +66,9 @@ const DetailView = ({route, navigation}) => {
         )
     }
 
-    console.log(resourceName)
-
     const structureView = () =>{
         return(
-            <View style={styles.container}>
+            <View>
               <Text style={styles.heading}>{resource.name}</Text>
               <Text style={styles.list}>Expansion:</Text>
                     <Text style={styles.nestedList}>{resource.expansion}</Text>
