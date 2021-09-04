@@ -38,6 +38,11 @@ const mainListData = [
 ]
 
 const MainListView = ({navigation}) => {
+
+    /**
+    * This method is to navigate to ListItem screen
+    * @params id passed as parameter to load the relevant resource in ListItem screen
+    */
    const clickResources = (id) => {
         navigation.navigate('List', { resourceName: id })
    }

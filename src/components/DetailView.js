@@ -30,6 +30,10 @@ const DetailView = ({route, navigation}) => {
     const [resource, setResource] = useState([]);
     const [resourceName, setResourceName] = useState(route.params.resource);
 
+    /**
+    * This method is to call the getResourceFromApi method in ApiService class
+    * to fetch information according to the relevant resource
+    */
     const getResource = async () =>{
         await ApiService.getResourceFromApi(resourceName, route.params.id)
             .then(response =>{
@@ -44,6 +48,9 @@ const DetailView = ({route, navigation}) => {
          getResource();
     },[])
 
+    /**
+    * This method is to called is to view an civilization detail if the resource is civilization
+    */
     const civilizationView = () =>{
         return (
             <View>
@@ -66,6 +73,9 @@ const DetailView = ({route, navigation}) => {
         )
     }
 
+    /**
+    * This method is to called is to view an structure detail if the resource is structure
+    */
     const structureView = () =>{
         return(
             <View>
@@ -91,6 +101,9 @@ const DetailView = ({route, navigation}) => {
         )
     }
 
+    /**
+    * This method is to called is to view an unit detail if the resource is unit
+    */
     const unitView = () =>{
         return (
             <View>

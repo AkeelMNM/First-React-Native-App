@@ -23,6 +23,10 @@ const ListView = ({ route, navigation }) =>{
     const [resourceName, setResourceName] = useState(route.params.resourceName);
     const [title, setTitle] = useState('');
 
+    /**
+    * This method is to call the getResourcesFromApi method in ApiService class
+    * to fetch information according to the relevant resource
+    */
     const getResources = () =>{
         ApiService.getResourcesFromApi(resourceName)
             .then(response =>{
@@ -39,6 +43,9 @@ const ListView = ({ route, navigation }) =>{
             })
     }
 
+    /**
+    * This method is to set the title in the screen according to the relevant resource
+    */
     const setTitleName = () =>{
         resourceName === 'civilizations'?(
              setTitle('Civilizations')
@@ -54,6 +61,9 @@ const ListView = ({ route, navigation }) =>{
          getResources();
     },[])
 
+    /**
+    * This method is to navigate to the DetailView screen
+    */
     const clickResource = (id) => {
         let changedResourceName = '';
 
