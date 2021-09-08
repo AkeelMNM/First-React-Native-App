@@ -16,7 +16,7 @@ import {
   Text,
   useColorScheme,
   View,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 
 import {
@@ -26,13 +26,13 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MainListView from './src/components/MainListView';
 import ListView from './src/components/ListView';
 import DetailView from './src/components/DetailView';
-
-
+import {Provider} from 'react-redux';
+import {store} from './src/state/store';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -60,7 +60,6 @@ const Section = ({children, title}): Node => {
   );
 };
 
-
 const Stack = createNativeStackNavigator();
 
 const App: () => Node = () => {
@@ -71,23 +70,27 @@ const App: () => Node = () => {
   };
 
   const MyTheme = {
-          ...DefaultTheme,
-          colors: {
-              ...DefaultTheme.colors,
-              background: 'transparent',
-          },
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: 'transparent',
+    },
   };
 
   return (
-      <ImageBackground source={require('./src/image/BgImage.jpg')} style={{width: '100%', height: '100%'}}>
-          <NavigationContainer theme={MyTheme}>
-            <Stack.Navigator>
-              <Stack.Screen name="MainList" component={MainListView}/>
-              <Stack.Screen name="List" component={ListView}/>
-              <Stack.Screen name="DetailView" component={DetailView}/>
-            </Stack.Navigator>
-          </NavigationContainer>
+    <Provider store={store}>
+      <ImageBackground
+        source={require('./src/image/BgImage.jpg')}
+        style={{width: '100%', height: '100%'}}>
+        <NavigationContainer theme={MyTheme}>
+          <Stack.Navigator>
+            <Stack.Screen name="MainList" component={MainListView} />
+            <Stack.Screen name="List" component={ListView} />
+            <Stack.Screen name="DetailView" component={DetailView} />
+          </Stack.Navigator>
+        </NavigationContainer>
       </ImageBackground>
+    </Provider>
   );
 };
 
